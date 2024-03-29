@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace imobiSystem.Infrastructure.Data.Repositories
 {
-    public class CustomerRepository : RepositoryBase<Customer>, ICustomerRepository
+    public class CorretorRepository : RepositoryBase<Corretor>, ICorretorRepository
     {
         private readonly SqlContext sqlContext;
 
-        public CustomerRepository(SqlContext sqlContext) : base(sqlContext) 
+        public CorretorRepository(SqlContext sqlContext) : base(sqlContext) 
         {
             this.sqlContext = sqlContext;
         }

@@ -19,12 +19,22 @@ namespace imobiSystem.Infrastructure.CrossCutting.IOC
         {
             #region IOC
 
-            builder.RegisterType<CustomerManager>().As<ICustomerManager>();
+            builder.RegisterType<ProprietarioManager>().As<IProprietarioManager>();
+            builder.RegisterType<ProprietarioRepository>().As<IProprietarioRepository>();
+            builder.RegisterType<ProprietarioMapper>().As<IProprietarioMapper>();
 
-            builder.RegisterType<CustomerRepository>().As<ICustomerRepository>();
+            builder.RegisterType<CorretorManager>().As<ICorretorManager>();
+            builder.RegisterType<CorretorRepository>().As<ICorretorRepository>();
+            builder.RegisterType<CorretorMapper>().As<ICorretorMapper>();
 
-            builder.RegisterType<CustomerMapper>().As<ICustomerMapper>();
-            
+            builder.RegisterType<InquilinoManager>().As<IInquilinoManager>();
+            builder.RegisterType<InquilinoRepository>().As<IInquilinoRepository>();
+            builder.RegisterType<InquilinoMapper>().As<IInquilinoMapper>();
+
+            builder.RegisterType<ImovelManager>().As<IImovelManager>();
+            builder.RegisterType<ImovelRepository>().As<IImovelRepository>();
+            builder.RegisterType<ImovelMapper>().As<IImovelMapper>();
+
             #endregion
         }
     }

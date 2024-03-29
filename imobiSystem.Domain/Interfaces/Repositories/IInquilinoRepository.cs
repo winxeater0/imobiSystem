@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace imobiSystem.Domain.Interfaces.Repositories
 {
-    public interface ICustomerRepository : IRepositoryBase<Customer>
+    public interface IInquilinoRepository : IRepositoryBase<Inquilino>
     {
     }
 }

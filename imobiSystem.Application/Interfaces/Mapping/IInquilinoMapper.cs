@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace imobiSystem.Application.Interfaces.Mapping
 {
-    public interface ICustomerMapper
+    public interface IInquilinoMapper
     {
-        Customer MapDtoToEntity(CustomerDto customerDto);
-        IEnumerable<CustomerDto> MapListCustomerDto(IEnumerable<Customer> customers);
-        CustomerDto MapEntityToDto(Customer customer);
+        Inquilino MapDtoToEntity(InquilinoDto inquilinoDto);
+        IEnumerable<InquilinoDto> MapListCustomerDto(IEnumerable<Inquilino> inquilino);
+        InquilinoDto MapEntityToDto(Inquilino inquilino);
     }
 }

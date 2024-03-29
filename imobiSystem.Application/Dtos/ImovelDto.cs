@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace imobiSystem.Application.Dtos
 {
-    public class CustomerDto
+    public class ImovelDto
     {
+        public int Id { get; set; }
+        public string Descricao { get; set; }
+        public string Endereco { get; set; }
     }
 }
