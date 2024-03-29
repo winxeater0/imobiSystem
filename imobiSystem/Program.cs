@@ -1,4 +1,5 @@
 using Autofac;
+using Autofac.Core;
 using imobiSystem.Infrastructure.CrossCutting.IOC;
 using imobiSystem.Infrastrusture.Data;
 using Microsoft.EntityFrameworkCore;
@@ -20,7 +21,7 @@ ContainerBuilder containerBuilder = new ContainerBuilder();
 containerBuilder.RegisterModule(new ModuleIOC());
 
 builder.Services.AddDbContext<SqlContext>(options =>
-   options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+   options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("imobiSystem.API")));
 
 var app = builder.Build();
 
