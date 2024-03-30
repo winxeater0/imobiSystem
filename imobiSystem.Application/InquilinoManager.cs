@@ -39,9 +39,9 @@ namespace imobiSystem.Application
             return _inquilinoMapper.MapEntityToDto(inquilino);
         }
 
-        public void Remove(InquilinoDto inquilinoDto)
+        public void Remove(int id)
         {
-            var inquilino = _inquilinoMapper.MapDtoToEntity(inquilinoDto);
+            var inquilino = _inquilinoRepository.GetById(id);
             _inquilinoRepository.Delete(inquilino);
         }
 

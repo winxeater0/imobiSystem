@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using Autofac.Core;
 using imobiSystem.Application;
 using imobiSystem.Application.Interfaces;
 using imobiSystem.Application.Interfaces.Mapping;

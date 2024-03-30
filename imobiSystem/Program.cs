@@ -1,6 +1,13 @@
 using Autofac;
 using Autofac.Core;
+using Autofac.Extensions.DependencyInjection;
+using imobiSystem.Application;
+using imobiSystem.Application.Interfaces;
+using imobiSystem.Application.Interfaces.Mapping;
+using imobiSystem.Application.Mapping;
+using imobiSystem.Domain.Interfaces.Repositories;
 using imobiSystem.Infrastructure.CrossCutting.IOC;
+using imobiSystem.Infrastructure.Data.Repositories;
 using imobiSystem.Infrastrusture.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
@@ -17,8 +24,11 @@ builder.Services.AddSwaggerGen(i =>
     i.SwaggerDoc("v1", new OpenApiInfo { Title = "API imobi System", Version = "v1" });
 });
 
-ContainerBuilder containerBuilder = new ContainerBuilder();
-containerBuilder.RegisterModule(new ModuleIOC());
+builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
+
+builder.Host.ConfigureContainer<ContainerBuilder>(
+   builder => builder.RegisterModule(new ModuleIOC()));
+
 
 builder.Services.AddDbContext<SqlContext>(options =>
    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("imobiSystem.API")));

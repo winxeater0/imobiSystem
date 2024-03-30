@@ -30,7 +30,7 @@ namespace imobiSystem.API.Controllers
         }
 
         [HttpPost]
-        public ActionResult Post([FromBody] ProprietarioDto proprietarioDto)
+        public ActionResult Post([FromBody] ProprietarioPostDto proprietarioDto)
         {
             try
             {
@@ -68,14 +68,14 @@ namespace imobiSystem.API.Controllers
         }
 
         [HttpDelete()]
-        public ActionResult Delete([FromBody] ProprietarioDto proprietarioDto)
+        public ActionResult Delete([FromBody] int id)
         {
             try
             {
-                if (proprietarioDto == null)
+                if (id == null)
                     return NotFound();
 
-                _proprietarioManager.Remove(proprietarioDto);
+                _proprietarioManager.Remove(id);
                 return Ok("Proprietario removido com sucesso!");
             }
             catch (Exception ex)

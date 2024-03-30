@@ -21,9 +21,9 @@ namespace imobiSystem.Application
             _proprietarioMapper = proprietarioMapper;
         }
 
-        public void Add(ProprietarioDto ProprietarioDto)
+        public void Add(ProprietarioPostDto ProprietarioDto)
         {
-            var proprietario = _proprietarioMapper.MapDtoToEntity(ProprietarioDto);
+            var proprietario = _proprietarioMapper.MapPostDtoToEntity(ProprietarioDto);
             _proprietarioRepository.Add(proprietario);
         }
 
@@ -39,9 +39,9 @@ namespace imobiSystem.Application
             return _proprietarioMapper.MapEntityToDto(proprietario);
         }
 
-        public void Remove(ProprietarioDto proprietarioDto)
+        public void Remove(int id)
         {
-            var proprietario = _proprietarioMapper.MapDtoToEntity(proprietarioDto);
+            var proprietario = _proprietarioRepository.GetById(id);
             _proprietarioRepository.Delete(proprietario);
         }
 

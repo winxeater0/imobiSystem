@@ -68,14 +68,14 @@ namespace imobiSystem.API.Controllers
         }
 
         [HttpDelete()]
-        public ActionResult Delete([FromBody] InquilinoDto inquilinoDto)
+        public ActionResult Delete([FromBody] int id)
         {
             try
             {
-                if (inquilinoDto == null)
+                if (id == null)
                     return NotFound();
 
-                _inquilinoManager.Remove(inquilinoDto);
+                _inquilinoManager.Remove(id);
                 return Ok("Inquilino removido com sucesso!");
             }
             catch (Exception ex)

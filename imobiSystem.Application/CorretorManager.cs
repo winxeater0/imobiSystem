@@ -21,9 +21,9 @@ namespace imobiSystem.Application
             _corretorMapper = corretorMapper;
         }
 
-        public void Add(CorretorDto corretorDto)
+        public void Add(CorretorPostDto corretorDto)
         {
-            var corretor = _corretorMapper.MapDtoToEntity(corretorDto);
+            var corretor = _corretorMapper.MapPostDtoToEntity(corretorDto);
             _corretorRepository.Add(corretor);
         }
 
@@ -39,9 +39,13 @@ namespace imobiSystem.Application
             return _corretorMapper.MapEntityToDto(corretor);
         }
 
-        public void Remove(CorretorDto corretorDto)
+        public void Remove(int id)
         {
-            var corretor = _corretorMapper.MapDtoToEntity(corretorDto);
+            var corretor = _corretorRepository.GetById(id);
+
+            if (corretor == null)
+                throw new Exception("Corretor não encontrado!");
+
             _corretorRepository.Delete(corretor);
         }
 

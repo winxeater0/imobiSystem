@@ -30,7 +30,7 @@ namespace imobiSystem.API.Controllers
         }
 
         [HttpPost]
-        public ActionResult Post([FromBody] CorretorDto corretorDTO)
+        public ActionResult Post([FromBody] CorretorPostDto corretorDTO)
         {
             try
             {
@@ -68,14 +68,14 @@ namespace imobiSystem.API.Controllers
         }
 
         [HttpDelete()]
-        public ActionResult Delete([FromBody] CorretorDto corretorDto)
+        public ActionResult Delete([FromBody] int id)
         {
             try
             {
-                if (corretorDto == null)
+                if (id== null)
                     return NotFound();
 
-                _corretorManager.Remove(corretorDto);
+                _corretorManager.Remove(id);
                 return Ok("Corretor removido com sucesso!");
             }
             catch (Exception ex)

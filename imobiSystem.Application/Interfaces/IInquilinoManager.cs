@@ -11,7 +11,7 @@ namespace imobiSystem.Application.Interfaces
     {
         void Add(InquilinoDto inquilinoDto);
         void Update(InquilinoDto inquilinoDto);
-        void Remove(InquilinoDto inquilinoDto);
+        void Remove(int id);
         IEnumerable<InquilinoDto> GetAll();
         InquilinoDto GetById(int id);
     }

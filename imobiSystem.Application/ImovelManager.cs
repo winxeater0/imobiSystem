@@ -27,9 +27,9 @@ namespace imobiSystem.Application
             _imovelMapper = imovelMapper;
         }
 
-        public void Add(ImovelDto imovelDto, int proprietarioId)
+        public void Add(ImovelPostDto imovelDto, int proprietarioId)
         {
-            var imovel = _imovelMapper.MapDtoToEntity(imovelDto);
+            var imovel = _imovelMapper.MapPostDtoToEntity(imovelDto);
 
             var proprietario = _proprietarioRepository.GetById(proprietarioId);
 
@@ -52,9 +52,12 @@ namespace imobiSystem.Application
             return _imovelMapper.MapEntityToDto(imovel);
         }
 
-        public void Remove(ImovelDto imovelDto)
+        public void Remove(int id)
         {
-            var imovel = _imovelMapper.MapDtoToEntity(imovelDto);
+            var imovel = _imovelRepository.GetById(id);
+            if (imovel == null)
+                throw new Exception("Imóvel não encontrado.");
+
             _imovelRepository.Delete(imovel);
         }
 

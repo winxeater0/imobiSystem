@@ -21,6 +21,15 @@ namespace imobiSystem.Application.Mapping
             };
         }
 
+        public Proprietario MapPostDtoToEntity(ProprietarioPostDto customerDto)
+        {
+            return new Proprietario()
+            {
+                Nome = customerDto.Nome,
+                Documento = customerDto.Documento
+            };
+        }
+
         public ProprietarioDto MapEntityToDto(Proprietario proprietario)
         {
             return new ProprietarioDto()

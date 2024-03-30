@@ -9,9 +9,9 @@ namespace imobiSystem.Application.Interfaces
 {
     public interface ICorretorManager
     {
-        void Add(CorretorDto corretorDto);
+        void Add(CorretorPostDto corretorDto);
         void Update(CorretorDto corretorDto);
-        void Remove(CorretorDto corretorDto);
+        void Remove(int id);
         IEnumerable<CorretorDto> GetAll();
         CorretorDto GetById(int id);
     }

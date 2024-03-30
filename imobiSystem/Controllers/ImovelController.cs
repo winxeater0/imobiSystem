@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace imobiSystem.API.Controllers
 {
-    [Route("[controller]")]
+    [Route("[controller]/[action]")]
     [ApiController]
     public class ImovelController : Controller
     {
@@ -30,11 +30,11 @@ namespace imobiSystem.API.Controllers
         }
 
         [HttpPost]
-        public ActionResult Post([FromBody] ImovelDto imovelDTO, int proprietarioId)
+        public ActionResult Post([FromBody] ImovelPostDto imovelDTO, int proprietarioId)
         {
             try
             {
-                if (imovelDTO == null || proprietarioId == null)
+                if (imovelDTO == null || proprietarioId <= 0)
                     return NotFound();
 
                 _imovelManager.Add(imovelDTO, proprietarioId);
@@ -57,8 +57,6 @@ namespace imobiSystem.API.Controllers
                 if (imovelDto == null)
                     return NotFound();
 
-                var imovel = _imovelManager.GetById(imovelDto.Id);
-
                 _imovelManager.Update(imovelDto);
                 return Ok("Imóvel atualizado com sucesso!");
             }
@@ -70,14 +68,14 @@ namespace imobiSystem.API.Controllers
         }
 
         [HttpDelete()]
-        public ActionResult Delete([FromBody] ImovelDto imovelDto)
+        public ActionResult Delete([FromBody] int id)
         {
             try
             {
-                if (imovelDto == null)
+                if (id == null)
                     return NotFound();
 
-                _imovelManager.Remove(imovelDto);
+                _imovelManager.Remove(id);
                 return Ok("Imóvel removido com sucesso!");
             }
             catch (Exception ex)
@@ -89,7 +87,7 @@ namespace imobiSystem.API.Controllers
         }
 
         [HttpPost]
-        public ActionResult Post([FromBody]int imovelId, int inquilinoId)
+        public ActionResult Alugar([FromBody]int imovelId, int inquilinoId)
         {
             try
             {
@@ -104,8 +102,6 @@ namespace imobiSystem.API.Controllers
 
                 throw ex;
             }
-
-
         }
 
     }
