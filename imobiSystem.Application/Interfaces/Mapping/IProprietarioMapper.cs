@@ -11,7 +11,8 @@ namespace imobiSystem.Application.Interfaces.Mapping
     public interface IProprietarioMapper
     {
         Proprietario MapDtoToEntity(ProprietarioDto proprietarioDto);
-        Proprietario MapPostDtoToEntity(ProprietarioPostDto proprietarioDto);
+        Proprietario MapInputDtoToEntity(int id, ProprietarioInputDto customerDto);
+        Proprietario MapPostDtoToEntity(ProprietarioInputDto proprietarioDto);
         IEnumerable<ProprietarioDto> MapListCustomerDto(IEnumerable<Proprietario> proprietario);
         ProprietarioDto MapEntityToDto(Proprietario proprietario);
     }

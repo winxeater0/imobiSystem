@@ -22,7 +22,7 @@ namespace imobiSystem.Application
             _corretorMapper = corretorMapper;
         }
 
-        public void Add(CorretorPostDto corretorDto)
+        public void Add(CorretorInputDto corretorDto)
         {
             var corretor = _corretorMapper.MapPostDtoToEntity(corretorDto);
             _corretorRepository.Add(corretor);
@@ -55,9 +55,9 @@ namespace imobiSystem.Application
             _corretorRepository.Delete(corretor);
         }
 
-        public void Update(CorretorDto corretorDto)
+        public void Update(int id, CorretorInputDto corretorDto)
         {
-            var corretor = _corretorMapper.MapDtoToEntity(corretorDto);
+            var corretor = _corretorMapper.MapInputDtoToEntity(id, corretorDto);
             _corretorRepository.Update(corretor);
         }
     }

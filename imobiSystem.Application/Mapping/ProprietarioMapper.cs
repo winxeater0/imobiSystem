@@ -21,7 +21,17 @@ namespace imobiSystem.Application.Mapping
             };
         }
 
-        public Proprietario MapPostDtoToEntity(ProprietarioPostDto customerDto)
+        public Proprietario MapInputDtoToEntity(int id, ProprietarioInputDto customerDto)
+        {
+            return new Proprietario()
+            {
+                Id = id,
+                Nome = customerDto.Nome,
+                Documento = customerDto.Documento
+            };
+        }
+
+        public Proprietario MapPostDtoToEntity(ProprietarioInputDto customerDto)
         {
             return new Proprietario()
             {

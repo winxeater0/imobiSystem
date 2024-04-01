@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace imobiSystem.Application.Dtos
 {
-    public class InquilinoPostDto
+    public class CorretorInputDto
     {
         public string Nome { get; set; }
         public string Documento { get; set; }

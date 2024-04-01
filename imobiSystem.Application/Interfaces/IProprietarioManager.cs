@@ -9,8 +9,8 @@ namespace imobiSystem.Application.Interfaces
 {
     public interface IProprietarioManager
     {
-        void Add(ProprietarioPostDto proprietarioDto);
-        void Update(ProprietarioDto proprietarioDto);
+        void Add(ProprietarioInputDto proprietarioDto);
+        void Update(int id, ProprietarioInputDto proprietarioDto);
         void Remove(int id);
         IEnumerable<ProprietarioDto> GetAll();
         ProprietarioDto GetById(int id);

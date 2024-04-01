@@ -9,8 +9,8 @@ namespace imobiSystem.Application.Interfaces
 {
     public interface IImovelManager
     {
-        void Add(ImovelPostDto imovelDto, int proprietarioId);
-        void Update(ImovelDto imovelDto);
+        void Add(ImovelInputDto imovelDto, int proprietarioId);
+        void Update(int id, ImovelInputDto imovelDto);
         void Remove(int id);
         IEnumerable<ImovelDto> GetAll();
         ImovelDto GetById(int id);

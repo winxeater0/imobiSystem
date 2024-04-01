@@ -20,8 +20,17 @@ namespace imobiSystem.Application.Mapping
                 Documento = inquilinoDto.Documento,
             };
         }
+        public Inquilino MapInputDtoToEntity(int id, InquilinoInputDto inquilinoDto)
+        {
+            return new Inquilino()
+            {
+                Id = id,
+                Nome = inquilinoDto.Nome,
+                Documento = inquilinoDto.Documento,
+            };
+        }
 
-        public Inquilino MapDtoToEntity(InquilinoPostDto inquilinoDto)
+        public Inquilino MapDtoToEntity(InquilinoInputDto inquilinoDto)
         {
             return new Inquilino()
             {

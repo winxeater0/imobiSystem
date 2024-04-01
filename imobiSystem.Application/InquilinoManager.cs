@@ -21,7 +21,7 @@ namespace imobiSystem.Application
             _inquilinoMapper = inquilinoMapper;
         }
 
-        public void Add(InquilinoPostDto inquilinoDto)
+        public void Add(InquilinoInputDto inquilinoDto)
         {
             var inquilino = _inquilinoMapper.MapDtoToEntity(inquilinoDto);
             _inquilinoRepository.Add(inquilino);
@@ -45,9 +45,9 @@ namespace imobiSystem.Application
             _inquilinoRepository.Delete(inquilino);
         }
 
-        public void Update(InquilinoDto inquilinoDto)
+        public void Update(int id, InquilinoInputDto inquilinoDto)
         {
-            var inquilino = _inquilinoMapper.MapDtoToEntity(inquilinoDto);
+            var inquilino = _inquilinoMapper.MapInputDtoToEntity(id, inquilinoDto);
             _inquilinoRepository.Update(inquilino);
         }
     }

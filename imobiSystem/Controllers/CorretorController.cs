@@ -36,8 +36,8 @@ namespace imobiSystem.API.Controllers
                 output = ex.Message;
             }
 
-            _logsManager.Handler("Corretor/Get/{id}", string.Empty, StringExtension.CheckObjAsString(result, output));
-            return Ok();
+            _logsManager.Handler("Corretor/Get/", string.Empty, StringExtension.CheckObjAsString(result, output));
+            return Ok(result);
         }
 
         [HttpGet("{id}")]
@@ -62,7 +62,7 @@ namespace imobiSystem.API.Controllers
 
 
         [HttpPost]
-        public ActionResult Post([FromBody] CorretorPostDto corretorDTO)
+        public ActionResult Post([FromBody] CorretorInputDto corretorDTO)
         {
             var output = Mensagens.AdicionadoComSucesso;
 
@@ -78,12 +78,12 @@ namespace imobiSystem.API.Controllers
                 output = ex.Message;
             }
 
-            _logsManager.Handler("Corretor/Get/{id}", JsonSerializer.Serialize(corretorDTO), StringExtension.CheckObjAsString(null, output));
+            _logsManager.Handler("Corretor/Post/", JsonSerializer.Serialize(corretorDTO), StringExtension.CheckObjAsString(null, output));
             return Ok(output);
         }
 
         [HttpPut]
-        public ActionResult Put([FromBody] CorretorDto corretorDto)
+        public ActionResult Put(int id, [FromBody] CorretorInputDto corretorDto)
         {
             var output = Mensagens.AtualizadoComSucesso;
 
@@ -92,19 +92,19 @@ namespace imobiSystem.API.Controllers
                 if (corretorDto == null)
                     return NotFound();
 
-                _corretorManager.Update(corretorDto);
+                _corretorManager.Update(id, corretorDto);
             }
             catch (Exception ex)
             {
                 output = ex.Message;
             }
 
-            _logsManager.Handler("Corretor/Get/{id}", JsonSerializer.Serialize(corretorDto), StringExtension.CheckObjAsString(null, output));
+            _logsManager.Handler("Corretor/Put/{id}", JsonSerializer.Serialize(corretorDto), StringExtension.CheckObjAsString(null, output));
             return Ok(output);
         }
 
         [HttpDelete()]
-        public ActionResult Delete([FromBody] int id)
+        public ActionResult Delete(int id)
         {
             var output = Mensagens.RemovidoComSucesso;
 
@@ -120,7 +120,7 @@ namespace imobiSystem.API.Controllers
                 output = ex.Message;
             }
 
-            _logsManager.Handler("Corretor/Get/{id}", id.ToString(), StringExtension.CheckObjAsString(null, output));
+            _logsManager.Handler("Corretor/Delete/{id}", id.ToString(), StringExtension.CheckObjAsString(null, output));
             return Ok(output);
 
         }

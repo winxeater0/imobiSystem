@@ -9,8 +9,8 @@ namespace imobiSystem.Application.Interfaces
 {
     public interface IInquilinoManager
     {
-        void Add(InquilinoPostDto inquilinoDto);
-        void Update(InquilinoDto inquilinoDto);
+        void Add(InquilinoInputDto inquilinoDto);
+        void Update(int id, InquilinoInputDto inquilinoDto);
         void Remove(int id);
         IEnumerable<InquilinoDto> GetAll();
         InquilinoDto GetById(int id);

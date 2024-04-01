@@ -11,7 +11,8 @@ namespace imobiSystem.Application.Interfaces.Mapping
     public interface ICorretorMapper
     {
         Corretor MapDtoToEntity(CorretorDto corretorDto);
-        public Corretor MapPostDtoToEntity(CorretorPostDto corretorDto);
+        Corretor MapInputDtoToEntity(int id, CorretorInputDto corretorDto);
+        public Corretor MapPostDtoToEntity(CorretorInputDto corretorDto);
         IEnumerable<CorretorDto> MapListCustomerDto(IEnumerable<Corretor> corretor);
         CorretorDto MapEntityToDto(Corretor corretor);
     }

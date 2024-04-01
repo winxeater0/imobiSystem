@@ -21,7 +21,17 @@ namespace imobiSystem.Application.Mapping
             };
         }
 
-        public Imovel MapPostDtoToEntity(ImovelPostDto imovelDto)
+        public Imovel MapInputDtoToEntity(int id, ImovelInputDto imovelDto)
+        {
+            return new Imovel()
+            {
+                Id = id,
+                Descricao = imovelDto.Descricao,
+                Endereco = imovelDto.Endereco,
+            };
+        }
+
+        public Imovel MapPostDtoToEntity(ImovelInputDto imovelDto)
         {
             return new Imovel()
             {

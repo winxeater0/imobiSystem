@@ -1,7 +1,9 @@
 ﻿using imobiSystem.Application;
 using imobiSystem.Application.Dtos;
 using imobiSystem.Application.Interfaces;
+using imobiSystem.Utils;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.Json;
 
 namespace imobiSystem.API.Controllers
 {
@@ -11,74 +13,100 @@ namespace imobiSystem.API.Controllers
     {
 
         private readonly IImovelManager _imovelManager;
+        private readonly ILogsManager _logsManager;
 
-        public ImovelController(IImovelManager imovelManager)
+
+        public ImovelController(IImovelManager imovelManager, ILogsManager logsManager)
         {
             _imovelManager = imovelManager;
+            _logsManager = logsManager;
         }
 
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
-            return Ok(_imovelManager.GetAll());
+            IEnumerable<ImovelDto> result = null;
+            var output = string.Empty;
+
+            try
+            {
+                result = _imovelManager.GetAll();
+            }
+            catch (Exception ex)
+            {
+                output = ex.Message;
+            }
+
+            _logsManager.Handler("Imovel/Get/", string.Empty, StringExtension.CheckObjAsString(result, output));
+            return Ok(result);
         }
 
         [HttpGet("{id}")]
         public ActionResult<string> Get(int id)
         {
+            ImovelFullDto result = null;
+            var output = string.Empty;
+
             try
             {
-                return Ok(_imovelManager.GetFullImovel(id));
-
+                result = _imovelManager.GetFullImovel(id);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                output = ex.Message;
             }
+
+            _logsManager.Handler("Imovel/Get/{id}", id.ToString(), StringExtension.CheckObjAsString(result, output));
+            return Ok();
         }
 
         [HttpPost]
-        public ActionResult Post([FromBody] ImovelPostDto imovelDTO, int proprietarioId)
+        public ActionResult Post([FromBody] ImovelInputDto imovelDTO, int proprietarioId)
         {
+            var output = Mensagens.AdicionadoComSucesso;
+
             try
             {
                 if (imovelDTO == null || proprietarioId <= 0)
                     return NotFound();
 
                 _imovelManager.Add(imovelDTO, proprietarioId);
-                return Ok("Imóvel adicionado com sucesso!");
             }
             catch (Exception ex)
             {
-
-                throw ex;
+                output = ex.Message;
             }
 
-
+            _logsManager.Handler("Imovel/Post/", JsonSerializer.Serialize(imovelDTO) + proprietarioId, StringExtension.CheckObjAsString(null, output));
+            return Ok(output);
         }
 
         [HttpPut]
-        public ActionResult Put([FromBody] ImovelDto imovelDto)
+        public ActionResult Put(int id, [FromBody] ImovelInputDto imovelDto)
         {
+            var output = Mensagens.AtualizadoComSucesso;
+
             try
             {
                 if (imovelDto == null)
                     return NotFound();
 
-                _imovelManager.Update(imovelDto);
-                return Ok("Imóvel atualizado com sucesso!");
+                _imovelManager.Update(id, imovelDto);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                output = ex.Message;
             }
+
+            _logsManager.Handler("Imovel/Put/", JsonSerializer.Serialize(imovelDto), StringExtension.CheckObjAsString(null, output));
+            return Ok(output);
         }
 
         [HttpDelete()]
-        public ActionResult Delete([FromBody] int id)
+        public ActionResult Delete(int id)
         {
+            var output = Mensagens.RemovidoComSucesso;
+
             try
             {
                 if (id <= 0)
@@ -89,15 +117,18 @@ namespace imobiSystem.API.Controllers
             }
             catch (Exception ex)
             {
-
-                throw ex;
+                output = ex.Message;
             }
 
+            _logsManager.Handler("Imovel/Delete/{id}", id.ToString(), StringExtension.CheckObjAsString(null, output));
+            return Ok(output);
         }
 
         [HttpPost]
-        public ActionResult Alugar([FromBody]AlugarDto alugarDto)
+        public ActionResult Alugar([FromBody] AlugarDto alugarDto)
         {
+            var output = "Alugado com sucesso!";
+
             try
             {
                 if (alugarDto.ImovelId <= 0 || alugarDto.InquilinoId <= 0 || alugarDto.ProprietarioId <= 0 || alugarDto.CorretorId <= 0)
@@ -108,9 +139,11 @@ namespace imobiSystem.API.Controllers
             }
             catch (Exception ex)
             {
-
-                throw ex;
+                output = ex.Message;
             }
+
+            _logsManager.Handler("Imovel/Alugar/", JsonSerializer.Serialize(alugarDto), StringExtension.CheckObjAsString(null, output));
+            return Ok(output);
         }
 
     }

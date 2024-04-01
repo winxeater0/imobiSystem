@@ -20,8 +20,17 @@ namespace imobiSystem.Application.Mapping
                 Documento = corretorDto.Documento
             };
         }
+        public Corretor MapInputDtoToEntity(int id, CorretorInputDto corretorDto)
+        {
+            return new Corretor()
+            {
+                Id = id,
+                Nome = corretorDto.Nome,
+                Documento = corretorDto.Documento
+            };
+        }
 
-        public Corretor MapPostDtoToEntity(CorretorPostDto corretorDto)
+        public Corretor MapPostDtoToEntity(CorretorInputDto corretorDto)
         {
             return new Corretor()
             {

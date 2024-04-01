@@ -29,7 +29,7 @@ namespace imobiSystem.Application
             _imovelMapper = imovelMapper;
         }
 
-        public void Add(ImovelPostDto imovelDto, int proprietarioId)
+        public void Add(ImovelInputDto imovelDto, int proprietarioId)
         {
             var imovel = _imovelMapper.MapPostDtoToEntity(imovelDto);
 
@@ -73,9 +73,9 @@ namespace imobiSystem.Application
             _imovelRepository.Delete(imovel);
         }
 
-        public void Update(ImovelDto imovelDto)
+        public void Update(int id, ImovelInputDto imovelDto)
         {
-            var imovel = _imovelMapper.MapDtoToEntity(imovelDto);
+            var imovel = _imovelMapper.MapInputDtoToEntity(id, imovelDto);
             _imovelRepository.Update(imovel);
         }
 

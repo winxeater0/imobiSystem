@@ -11,7 +11,8 @@ namespace imobiSystem.Application.Interfaces.Mapping
     public interface IImovelMapper
     {
         Imovel MapDtoToEntity(ImovelDto imovelDto);
-        Imovel MapPostDtoToEntity(ImovelPostDto imovelDto);
+        Imovel MapPostDtoToEntity(ImovelInputDto imovelDto);
+        Imovel MapInputDtoToEntity(int id, ImovelInputDto imovelDto);
         ImovelFullDto MapFullEntityToDto(Imovel imovel);
         IEnumerable<ImovelDto> MapListCustomerDto(IEnumerable<Imovel> imovel);
         ImovelDto MapEntityToDto(Imovel imovel);

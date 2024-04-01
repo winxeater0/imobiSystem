@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace imobiSystem.Application.Dtos
 {
-    public class ImovelPostDto
+    public class ProprietarioInputDto
     {
-        public string Descricao { get; set; }
-        public string Endereco { get; set; }
+        public string Nome { get; set; }
+        public string Documento { get; set; }
     }
 }
