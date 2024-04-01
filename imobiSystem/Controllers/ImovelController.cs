@@ -131,7 +131,7 @@ namespace imobiSystem.API.Controllers
 
             try
             {
-                if (alugarDto.ImovelId <= 0 || alugarDto.InquilinoId <= 0 || alugarDto.ProprietarioId <= 0 || alugarDto.CorretorId <= 0)
+                if (alugarDto.ImovelId <= 0 || alugarDto.InquilinoId <= 0 || alugarDto.ProprietarioId <= 0 || alugarDto.CorretorId.Count() <= 0)
                     return NotFound();
 
                 _imovelManager.Alugar(alugarDto);

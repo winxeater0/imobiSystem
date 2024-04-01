@@ -16,11 +16,11 @@ namespace imobiSystem.Domain.Entities
         public int ProprietarioId { get; set; }
         public int? InquilinoId { get; set; }
         public Proprietario Proprietario { get; set; } = null;
-        public Inquilino? Inquilino { get; set; } = new Inquilino();
+        public Inquilino? Inquilino { get; set; } = null;
 
-        public void Alugar(Inquilino inquilino, Corretor corretor)
+        public void Alugar(Inquilino inquilino, List<Corretor> corretores)
         {
-            inquilino.VincularCorretorContactado(corretor);
+            inquilino.VincularCorretorContactado(corretores);
             Inquilino = inquilino;
             DataAlugado = DateTime.Now;
             Alugado = true;

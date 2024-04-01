@@ -132,7 +132,7 @@ namespace imobiSystem.Tests.Application
             corretorRepositoryMock.Setup(x => x.Add(corretor));
             var corretorOutput = corretorRepositoryMock.Setup(x => x.GetById(corretor.Id)).Returns(corretor);
 
-            imovelMocked.Alugar(inquilino, corretor);
+            imovelMocked.Alugar(inquilino, new List<Corretor>() { corretor });
             imovelRepositoryMock.Setup(x => x.Update(imovelMocked));
 
             Assert.IsNotNull(imovelMocked);

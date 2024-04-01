@@ -96,12 +96,12 @@ namespace imobiSystem.Application
             if (proprietario == null)
                 throw new Exception("Proprietario não encontrado.");
 
-            var corretor = _corretorRepository.GetById(alugarDto.CorretorId);
+            var corretores = _corretorRepository.GetCorretoresByIds(alugarDto.CorretorId);
 
-            if (corretor == null)
-                throw new Exception("Corretor não encontrado.");
+            if (corretores.Count() == 0)
+                throw new Exception("Nenhum corretor não encontrado.");
 
-            imovel.Alugar(inquilino, corretor);
+            imovel.Alugar(inquilino, corretores);
 
             _imovelRepository.Update(imovel);
         }

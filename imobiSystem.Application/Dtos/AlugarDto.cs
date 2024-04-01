@@ -11,6 +11,6 @@ namespace imobiSystem.Application.Dtos
         public int ImovelId { get; set; }
         public int InquilinoId { get; set; }
         public int ProprietarioId { get; set; }
-        public int CorretorId { get; set; }
+        public List<int> CorretorId { get; set; }
     }
 }

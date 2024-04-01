@@ -9,5 +9,6 @@ namespace imobiSystem.Domain.Interfaces.Repositories
 {
     public interface ICorretorRepository : IRepositoryBase<Corretor>
     {
+        List<Corretor> GetCorretoresByIds(List<int> ids);
     }
 }
