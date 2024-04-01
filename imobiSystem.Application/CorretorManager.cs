@@ -2,6 +2,7 @@
 using imobiSystem.Application.Interfaces;
 using imobiSystem.Application.Interfaces.Mapping;
 using imobiSystem.Domain.Interfaces.Repositories;
+using imobiSystem.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,7 +36,12 @@ namespace imobiSystem.Application
 
         public CorretorDto GetById(int id)
         {
+
             var corretor = _corretorRepository.GetById(id);
+
+            if (corretor == null)
+                throw new Exception(Mensagens.NaoEncontrado);
+
             return _corretorMapper.MapEntityToDto(corretor);
         }
 

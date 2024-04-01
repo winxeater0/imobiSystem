@@ -3,6 +3,7 @@ using Autofac.Core;
 using imobiSystem.Application;
 using imobiSystem.Application.Interfaces;
 using imobiSystem.Application.Interfaces.Mapping;
+using imobiSystem.Application.LogsHandler;
 using imobiSystem.Application.Mapping;
 using imobiSystem.Domain.Interfaces.Repositories;
 using imobiSystem.Infrastructure.Data.Repositories;
@@ -35,6 +36,9 @@ namespace imobiSystem.Infrastructure.CrossCutting.IOC
             builder.RegisterType<ImovelManager>().As<IImovelManager>();
             builder.RegisterType<ImovelRepository>().As<IImovelRepository>();
             builder.RegisterType<ImovelMapper>().As<IImovelMapper>();
+
+            builder.RegisterType<LogsManager>().As<ILogsManager>();
+            builder.RegisterType<LogsRepository>().As<ILogsRepository>();
 
             #endregion
         }

@@ -16,14 +16,16 @@ namespace imobiSystem.Application
         private readonly IImovelRepository _imovelRepository;
         private readonly IInquilinoRepository _inquilinoRepository;
         private readonly IProprietarioRepository _proprietarioRepository;
+        private readonly ICorretorRepository _corretorRepository;
         private readonly IImovelMapper _imovelMapper;
 
-        public ImovelManager(IImovelRepository imovelRepository, IInquilinoRepository inquilinoRepository,
+        public ImovelManager(IImovelRepository imovelRepository, IInquilinoRepository inquilinoRepository, ICorretorRepository corretorRepository,
             IProprietarioRepository proprietarioRepository, IImovelMapper imovelMapper)
         {
             _imovelRepository = imovelRepository;
             _inquilinoRepository = inquilinoRepository;
             _proprietarioRepository = proprietarioRepository;
+            _corretorRepository = corretorRepository;
             _imovelMapper = imovelMapper;
         }
 
@@ -52,6 +54,16 @@ namespace imobiSystem.Application
             return _imovelMapper.MapEntityToDto(imovel);
         }
 
+        public ImovelFullDto GetFullImovel(int id)
+        {
+            var imovel = _imovelRepository.GetFullImovel(id);
+
+            if (imovel == null)
+                throw new Exception("O imovel não está cadastrado.");
+
+            return _imovelMapper.MapFullEntityToDto(imovel);
+        }
+
         public void Remove(int id)
         {
             var imovel = _imovelRepository.GetById(id);
@@ -67,19 +79,29 @@ namespace imobiSystem.Application
             _imovelRepository.Update(imovel);
         }
 
-        public void Alugar(int imovelId, int inquilinoId)
+        public void Alugar(AlugarDto alugarDto)
         {
-            var imovel = _imovelRepository.GetById(imovelId);
+            var imovel = _imovelRepository.GetById(alugarDto.ImovelId);
 
             if (imovel == null)
                 throw new Exception("Imóvel não encontrado.");
 
-            var inquilino = _inquilinoRepository.GetById(inquilinoId);
+            var inquilino = _inquilinoRepository.GetById(alugarDto.InquilinoId);
 
             if (inquilino == null)
                 throw new Exception("Inquilino não encontrado.");
 
-            imovel.Alugar(inquilino);
+            var proprietario = _proprietarioRepository.GetById(alugarDto.ProprietarioId);
+
+            if (proprietario == null)
+                throw new Exception("Proprietario não encontrado.");
+
+            var corretor = _corretorRepository.GetById(alugarDto.CorretorId);
+
+            if (corretor == null)
+                throw new Exception("Corretor não encontrado.");
+
+            imovel.Alugar(inquilino, corretor);
 
             _imovelRepository.Update(imovel);
         }

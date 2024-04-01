@@ -12,17 +12,18 @@ namespace imobiSystem.Domain.Entities
         public string Descricao { get; set; }
         public string Endereco { get; set; }
         public bool Alugado { get; set; } = false;
-        public DateTime DataAlugado { get; set; }
+        public DateTime? DataAlugado { get; set; }
         public int ProprietarioId { get; set; }
-        public int InquilinoId { get; set; }
+        public int? InquilinoId { get; set; }
         public Proprietario Proprietario { get; set; } = null;
-        public Inquilino Inquilino { get; set; } = null;
+        public Inquilino? Inquilino { get; set; } = new Inquilino();
 
-        public void Alugar(Inquilino inquilino)
+        public void Alugar(Inquilino inquilino, Corretor corretor)
         {
+            inquilino.VincularCorretorContactado(corretor);
             Inquilino = inquilino;
-            Alugado = true;
             DataAlugado = DateTime.Now;
+            Alugado = true;
         }
 
         public void VincularProprietario(Proprietario proprietario) => Proprietario = proprietario;

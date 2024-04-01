@@ -14,6 +14,7 @@ namespace imobiSystem.Application.Interfaces
         void Remove(int id);
         IEnumerable<ImovelDto> GetAll();
         ImovelDto GetById(int id);
-        void Alugar(int imovelId, int inquilinoId);
+        void Alugar(AlugarDto alugarDto);
+        ImovelFullDto GetFullImovel(int id);
     }
 }

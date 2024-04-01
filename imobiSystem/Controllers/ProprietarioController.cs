@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace imobiSystem.API.Controllers
 {
-    [Route("[controller]")]
+    [Route("[controller]/[action]")]
     [ApiController]
     public class ProprietarioController : Controller
     {
@@ -72,7 +72,7 @@ namespace imobiSystem.API.Controllers
         {
             try
             {
-                if (id == null)
+                if (id <= 0)
                     return NotFound();
 
                 _proprietarioManager.Remove(id);

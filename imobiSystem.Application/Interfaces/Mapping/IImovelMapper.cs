@@ -12,6 +12,7 @@ namespace imobiSystem.Application.Interfaces.Mapping
     {
         Imovel MapDtoToEntity(ImovelDto imovelDto);
         Imovel MapPostDtoToEntity(ImovelPostDto imovelDto);
+        ImovelFullDto MapFullEntityToDto(Imovel imovel);
         IEnumerable<ImovelDto> MapListCustomerDto(IEnumerable<Imovel> imovel);
         ImovelDto MapEntityToDto(Imovel imovel);
     }

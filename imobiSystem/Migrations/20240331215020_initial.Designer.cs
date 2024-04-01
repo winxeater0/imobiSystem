@@ -12,8 +12,8 @@ using imobiSystem.Infrastrusture.Data;
 namespace imobiSystem.API.Migrations
 {
     [DbContext(typeof(SqlContext))]
-    [Migration("20240329073705_Initial")]
-    partial class Initial
+    [Migration("20240331215020_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -56,7 +56,7 @@ namespace imobiSystem.API.Migrations
                     b.Property<bool>("Alugado")
                         .HasColumnType("bit");
 
-                    b.Property<DateTime>("DataAlugado")
+                    b.Property<DateTime?>("DataAlugado")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Descricao")
@@ -67,7 +67,7 @@ namespace imobiSystem.API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("InquilinoId")
+                    b.Property<int?>("InquilinoId")
                         .HasColumnType("int");
 
                     b.Property<int>("ProprietarioId")
@@ -158,9 +158,7 @@ namespace imobiSystem.API.Migrations
                 {
                     b.HasOne("imobiSystem.Domain.Entities.Inquilino", "Inquilino")
                         .WithMany("Imoveis")
-                        .HasForeignKey("InquilinoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("InquilinoId");
 
                     b.HasOne("imobiSystem.Domain.Entities.Proprietario", "Proprietario")
                         .WithMany("Imoveis")

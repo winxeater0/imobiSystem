@@ -11,6 +11,7 @@ namespace imobiSystem.Application.Interfaces.Mapping
     public interface IInquilinoMapper
     {
         Inquilino MapDtoToEntity(InquilinoDto inquilinoDto);
+        Inquilino MapDtoToEntity(InquilinoPostDto inquilinoDto);
         IEnumerable<InquilinoDto> MapListCustomerDto(IEnumerable<Inquilino> inquilino);
         InquilinoDto MapEntityToDto(Inquilino inquilino);
     }

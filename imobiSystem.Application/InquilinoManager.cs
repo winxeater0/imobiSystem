@@ -21,7 +21,7 @@ namespace imobiSystem.Application
             _inquilinoMapper = inquilinoMapper;
         }
 
-        public void Add(InquilinoDto inquilinoDto)
+        public void Add(InquilinoPostDto inquilinoDto)
         {
             var inquilino = _inquilinoMapper.MapDtoToEntity(inquilinoDto);
             _inquilinoRepository.Add(inquilino);

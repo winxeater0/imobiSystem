@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 
 namespace imobiSystem.Domain.Interfaces.Repositories
 {
-    public interface IImovelRepository : IRepositoryBase<Imovel>
+    public interface ILogsRepository : IRepositoryBase<Logs>
     {
-        Imovel GetFullImovel(int id);
     }
 }

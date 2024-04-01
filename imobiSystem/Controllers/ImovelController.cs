@@ -26,7 +26,16 @@ namespace imobiSystem.API.Controllers
         [HttpGet("{id}")]
         public ActionResult<string> Get(int id)
         {
-            return Ok(_imovelManager.GetById(id));
+            try
+            {
+                return Ok(_imovelManager.GetFullImovel(id));
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         [HttpPost]
@@ -72,7 +81,7 @@ namespace imobiSystem.API.Controllers
         {
             try
             {
-                if (id == null)
+                if (id <= 0)
                     return NotFound();
 
                 _imovelManager.Remove(id);
@@ -87,14 +96,14 @@ namespace imobiSystem.API.Controllers
         }
 
         [HttpPost]
-        public ActionResult Alugar([FromBody]int imovelId, int inquilinoId)
+        public ActionResult Alugar([FromBody]AlugarDto alugarDto)
         {
             try
             {
-                if (imovelId == null || inquilinoId == null)
+                if (alugarDto.ImovelId <= 0 || alugarDto.InquilinoId <= 0 || alugarDto.ProprietarioId <= 0 || alugarDto.CorretorId <= 0)
                     return NotFound();
 
-                _imovelManager.Alugar(imovelId, imovelId);
+                _imovelManager.Alugar(alugarDto);
                 return Ok("Imóvel alugado com sucesso!");
             }
             catch (Exception ex)

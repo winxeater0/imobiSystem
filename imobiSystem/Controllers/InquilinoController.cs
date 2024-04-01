@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace imobiSystem.API.Controllers
 {
-    [Route("[controller]")]
+    [Route("[controller]/[action]")]
     [ApiController]
     public class InquilinoController : Controller
     {
@@ -30,7 +30,7 @@ namespace imobiSystem.API.Controllers
         }
 
         [HttpPost]
-        public ActionResult Post([FromBody] InquilinoDto inquilinoDto)
+        public ActionResult Post([FromBody] InquilinoPostDto inquilinoDto)
         {
             try
             {
@@ -72,7 +72,7 @@ namespace imobiSystem.API.Controllers
         {
             try
             {
-                if (id == null)
+                if (id <= 0)
                     return NotFound();
 
                 _inquilinoManager.Remove(id);

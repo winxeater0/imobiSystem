@@ -12,6 +12,8 @@ namespace imobiSystem.Domain.Entities
         public string Nome { get; set; }
         public string Documento { get; set; }
         public List<Corretor> Corretores { get; } = new List<Corretor>();
-        public ICollection<Imovel> Imoveis { get; } = new List<Imovel>();
+        public List<Imovel> Imoveis { get; } = new List<Imovel>();
+
+        public void VincularCorretorContactado(Corretor corretor) => Corretores.Add(corretor);
     }
 }

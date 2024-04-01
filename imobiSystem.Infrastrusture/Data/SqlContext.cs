@@ -22,6 +22,7 @@ namespace imobiSystem.Infrastrusture.Data
         public DbSet<Inquilino> Inquilinos { get; set; }
         public DbSet<Corretor> Corretores { get; set; }
         public DbSet<Imovel> Imoveis { get; set; }
+        public DbSet<Logs> Logs { get; set; }
 
         public override int SaveChanges()
         {
@@ -66,8 +67,7 @@ namespace imobiSystem.Infrastrusture.Data
             modelBuilder.Entity<Inquilino>()
             .HasMany(e => e.Imoveis)
             .WithOne(e => e.Inquilino)
-            .HasForeignKey(e => e.InquilinoId)
-            .IsRequired();
+            .HasForeignKey(e => e.InquilinoId);
         }
     }
 }

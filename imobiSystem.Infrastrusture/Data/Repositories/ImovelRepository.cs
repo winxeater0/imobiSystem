@@ -1,6 +1,7 @@
 ﻿using imobiSystem.Domain.Entities;
 using imobiSystem.Domain.Interfaces.Repositories;
 using imobiSystem.Infrastrusture.Data;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,15 @@ namespace imobiSystem.Infrastructure.Data.Repositories
         public ImovelRepository(SqlContext sqlContext) : base(sqlContext) 
         {
             this.sqlContext = sqlContext;
+        }
+
+        public Imovel GetFullImovel(int id)
+        {
+            return sqlContext.Imoveis
+                .Where(x => x.Id == id)
+                .Include(x => x.Inquilino)
+                .Include(x => x.Proprietario)
+                .FirstOrDefault();
         }
     }
 }

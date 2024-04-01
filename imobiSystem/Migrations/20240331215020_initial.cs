@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace imobiSystem.API.Migrations
 {
-    public partial class Initial : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -84,9 +84,9 @@ namespace imobiSystem.API.Migrations
                     Descricao = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Endereco = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Alugado = table.Column<bool>(type: "bit", nullable: false),
-                    DataAlugado = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DataAlugado = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ProprietarioId = table.Column<int>(type: "int", nullable: false),
-                    InquilinoId = table.Column<int>(type: "int", nullable: false)
+                    InquilinoId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -95,8 +95,7 @@ namespace imobiSystem.API.Migrations
                         name: "FK_Imoveis_Inquilinos_InquilinoId",
                         column: x => x.InquilinoId,
                         principalTable: "Inquilinos",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Imoveis_Proprietarios_ProprietarioId",
                         column: x => x.ProprietarioId,

@@ -40,6 +40,30 @@ namespace imobiSystem.Application.Mapping
             };
         }
 
+        public ImovelFullDto MapFullEntityToDto(Imovel imovel)
+        {
+            return new ImovelFullDto()
+            {
+                Id = imovel.Id,
+                Descricao = imovel.Descricao,
+                Endereco = imovel.Endereco,
+                DataAlugado = imovel.DataAlugado,
+                Alugado = imovel.Alugado,
+                Inquilino = new InquilinoDto()
+                {
+                    Id = imovel.Inquilino.Id,
+                    Documento = imovel.Inquilino.Documento,
+                    Nome = imovel.Inquilino.Nome
+                },
+                Proprietario = new ProprietarioDto()
+                {
+                    Id = imovel.Proprietario.Id,
+                    Nome = imovel.Proprietario.Nome,
+                    Documento = imovel.Proprietario.Documento
+                }
+            };
+        }
+
         public IEnumerable<ImovelDto> MapListCustomerDto(IEnumerable<Imovel> imoveis)
         {
             return imoveis.Select(c => new ImovelDto
